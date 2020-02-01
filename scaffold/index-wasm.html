@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Slides</title>
   <style>
+    body {
+      overflow: hidden;
+    }
     .canvas-holder {
       display: flex;
       flex-direction: column;
@@ -14,6 +17,7 @@
       align-items: center;
       text-align: center;
       min-height: 100vh;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -30,9 +34,9 @@
     function main(wasm) {
 
         const count = wasm.exports.length;
+        const memory   = wasm.exports.memory;
         console.log("total slides", count);
 
-        return false
         // Work with JSON data here
         var width = 1024;
         var height = 768;
@@ -51,7 +55,7 @@
             var bytes = new Uint8Array(memory.buffer, offset, byteSize);
 
             var key_a = 3
-            var usub = Uint8Array.from({ length: byteSize }, (v, k) => {
+            var usub = Uint8ClampedArray.from({ length: byteSize }, (v, k) => {
               if (k == key_a) {
                 key_a += 4
                 return bytes[k - 3]
@@ -60,7 +64,7 @@
               }
             });
 
-
+            console.log(typeof usub)
             var img = new ImageData(usub, width, height);
 
             return img

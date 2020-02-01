@@ -1,0 +1,34 @@
+#lang nanodeck
+
+font size 45
+
+slide
+  color "Maroon" "loanwords, agriculture & webassembly"
+  "by Andre Alves Garzia"
+end
+
+slide
+  "it is a big move"
+  with image "flight.jpg"
+end
+
+slide
+  color "Dim Gray" "saudade"
+  § "a feeling of longing, melancholy, or nostalgia that is supposedly characteristic of the Portuguese or Brazilian temperament."
+end
+
+slide
+  color "red" "This is a plantation"
+  with image "plantation1.jpg"
+end
+
+slide
+  color "blue" "This is a milpa"
+  with image "milpa1.jpg"
+end
+
+slide
+  color "crimson" "💖 💖 💖"
+  color "Forest Green" "Let a thousand languages bloom!"
+  "➸ github.com/soapdog/nanodeck"
+end

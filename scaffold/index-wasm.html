@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Slides</title>
+  <style>
+    .canvas-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="canvas-holder">
+    <canvas id="slides" width="1024" height="768"></canvas>
+  </div>
+
+  <script>
+    // Yes this is the worse javascript I've ever written, but I am on a deadline
+    // for a talk... forgive me.
+
+    function main(wasm) {
+
+        const count = wasm.exports.length;
+        console.log("total slides", count);
+
+        return false
+        // Work with JSON data here
+        var width = 1024;
+        var height = 768;
+
+
+        var canvas = document.getElementById('slides');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+
+
+          function draw(i) {
+            let byteSize = width * height * 4;
+
+            var offset = i * byteSize;
+
+            var bytes = new Uint8Array(memory.buffer, offset, byteSize);
+
+            var key_a = 3
+            var usub = Uint8Array.from({ length: byteSize }, (v, k) => {
+              if (k == key_a) {
+                key_a += 4
+                return bytes[k - 3]
+              } else {
+                return bytes[k + 1]
+              }
+            });
+
+
+            var img = new ImageData(usub, width, height);
+
+            return img
+          }
+
+          function displaySlide(n) {
+            console.log(`displaying slide: ${n}`);
+            ctx.putImageData(draw(n), 0, 0);
+          }
+
+          function goForward() {
+            i++;
+            i = i % count;
+            displaySlide(i);
+          }
+
+          function goBackward() {
+            i--;
+            i = i % count;
+            displaySlide(i);
+          }
+
+          var i = 0;
+          displaySlide(i);
+
+          document.addEventListener('keyup', (event) => {
+            const keyName = event.key;
+
+            switch (keyName) {
+              case "ArrowRight":
+                goForward();
+                break;
+              case "ArrowLeft":
+                goBackward();
+                break;
+              case "z":
+                i = 0;
+                displaySlide(i);
+                break;
+            }
+          }, false);
+        }
+
+      }
+
+      fetch("slides.wasm").then(response =>
+            response.arrayBuffer()
+        ).then(bytes =>
+            WebAssembly.instantiate(bytes, {})
+        ).then(result =>
+            result.instance
+        ).then(main);
+
+
+
+  </script>
+</body>
+
+</html>

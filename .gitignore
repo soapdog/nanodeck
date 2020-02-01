@@ -1,0 +1,15 @@
+*~
+\#*
+.\#*
+.DS_Store
+compiled/
+/doc/
+*.bak
+*.1
+*.2
+*.wat
+*.wasm
+*.json
+build
+build-old
+build-wasm

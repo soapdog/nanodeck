@@ -1,0 +1,79 @@
+#lang nanodeck
+
+set font size 45
+set font face "Fira Code Retina"
+
+slide
+  color "Maroon" "Loanwords, Agriculture & WebAssembly"
+  "by Andre Alves Garzia"
+end
+
+slide
+  "I made a big move"
+  with image "flight.jpg"
+end
+
+
+slide
+  color "Dim Gray" "Saudade:"
+  § "A feeling of longing, melancholy, or nostalgia that is supposedly characteristic of the Portuguese or Brazilian temperament."
+end
+
+slide "languages <-> expressiveness"
+
+set font size 40
+slide "same thing with programming languages"
+
+slide
+  with background image "plantation2.jpg"
+  color "white" "This is a plantation"
+end
+
+
+slide
+  with background image "plantation3.png"
+  color "white" "This STILL is a plantation"
+end
+
+slide
+  with background image "soil.jpg"
+  color "white" "Plantation == Soil Degradation"
+end
+
+
+slide
+  color "blue" "This is a milpa"
+  with image "milpa1.jpg"
+end
+
+slide
+  with background image "milpa3.jpg"
+  color "white" "Milpas are Awesome!"
+end
+
+set font size 48
+
+slide
+  with background image "jsplantation.jpg"
+  color "white" "We live in a JS Plantation"
+end
+
+slide
+  color "Forest Green" "I want a Web Milpa!"
+end
+
+slide
+  with background image "source.jpg"
+  ""
+end
+
+slide
+  "Let's build a Web Milpa!"
+end
+
+slide
+  color "crimson" "💖 💖 💖"
+  color "Forest Green" "Let a thousand languages bloom!"
+  "➸ github.com/soapdog/nanodeck"
+  color "blue" "@soapdog"
+end
